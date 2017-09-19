@@ -4,10 +4,17 @@ import './App.css';
 import HelloWorld from './comps/HelloWorld';
 
 class App extends Component {
+
+  nappiPainettu()
+  {
+    console.log("jep");
+    // ... 
+  }
+
   render() {
     return (
       <div className="App">
-        <HelloWorld />
+        <HelloWorld buttonClickHandler={this.nappiPainettu}/>        
       </div>
     );
   }
