@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import HelloWorld from './comps/HelloWorld';
-import TodoList from './comps/TodoList';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+import NewItemButton from './comps/NewItemButton';
+import TodoList from './comps/TodoList';
 import itemData from './data/itemData';
 
 class App extends Component {
@@ -11,7 +12,13 @@ class App extends Component {
     constructor()
     {
         super();
-        this.state = { items: [] };
+        this.state = {
+            items: [],
+            editableVisible: true
+        };
+
+
+        this.toggleNewItemEditable = this.toggleNewItemEditable.bind(this);
     }
 
     componentDidMount () {
@@ -23,19 +30,24 @@ class App extends Component {
     buttonPressed()
     {
       console.log("test");
-      // ... 
+      // ...
     }
+
+    toggleNewItemEditable()
+    {
+        this.setState({
+            editableVisible: !this.state.editableVisible
+        });
+    }
+
+
 
     render() {
 
         return (
-            <div className="App">
-                <div>
-                    <HelloWorld buttonClickHandler={this.buttonPressed} />
-                </div>
-                <div>
-                    <TodoList items = { this.state.items } />
-                </div>
+            <div className="App container">
+                <NewItemButton clickHandler={ this.toggleNewItemEditable }/>
+                <TodoList items = { this.state.items } editableVisible={ this.state.editableVisible } />
             </div>
         );
     }

@@ -10,6 +10,13 @@ let data = [
         date: moment().add(7, 'days'),
         type: "chore",
         isDone: false,
+    },
+    {
+        id: Math.floor(Math.random() * 1000),
+        description: "Learn React",
+        date: moment().add(1, 'month'),
+        type: "learning",
+        isDone: false,
     }
 ];
 
