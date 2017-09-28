@@ -25,13 +25,18 @@ export default {
         return Promise.resolve(data);
     },
     addItem: (description, date, type) => {
-        data = data.concat([
-            {
-                id: Math.floor(Math.random() * 1000),
-                description,
-                date,
-                type
-            }
-        ])
+        return new Promise((resolve, reject) => {
+            data = data.concat([
+                {
+                    id: Math.floor(Math.random() * 1000),
+                    description,
+                    date: moment(date),
+                    type
+                }
+            ]);
+
+            resolve(data);
+        });
+        
     },
 }

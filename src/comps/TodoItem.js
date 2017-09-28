@@ -8,7 +8,6 @@ class TodoItem extends Component {
                 <div className="col">{ this.props.dueDate }</div>
                 <div className="col">{ this.props.type }</div>
             </div>
-
         )
     }
 }

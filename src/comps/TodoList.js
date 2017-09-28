@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TodoItem from './TodoItem';
+import NewItemInputs from './NewItemInputs';
 
 class TodoList extends Component {
 
@@ -7,21 +8,22 @@ class TodoList extends Component {
     {
         if(this.props.editableVisible)
         {
-            return (<div>Editable</div>);
+            return (<NewItemInputs addNewItemAction={ this.props.addNewItemAction }/>);
         }
         else
         {
-            return(<div>not</div>);
+            return null;
         }
     }
 
     render () {
         return (
             <div >
+                { this.displayEditable() }
                 {this.props.items.map((item) =>
                     <TodoItem key={item.id} description={ item.description } type={ item.type } dueDate={ item.date.format("DD.MM.YYYY")} />
                 )}
-                { this.displayEditable() }
+                
             </div>
         )
     }
