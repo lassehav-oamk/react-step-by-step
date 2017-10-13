@@ -30,7 +30,7 @@ class App extends Component {
     }
 
     addItemsToState(items)
-    {        
+    {
         this.setState({ items });
     }
 
@@ -60,7 +60,7 @@ class App extends Component {
         return (
             <div className="App container">
                 <NewItemButton clickHandler={ this.toggleNewItemEditable }/>
-                <TodoList 
+                <TodoList
                     items={ this.state.items }
                     editableVisible={ this.state.editableVisible }
                     addNewItemAction={this.addNewItem } />

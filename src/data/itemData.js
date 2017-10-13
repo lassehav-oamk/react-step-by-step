@@ -1,42 +1,43 @@
+import moment from 'moment';
+import axios from 'axios';
+const config = require ('../config.json');
 
-let moment = require('moment');
+function getItems()
+{
+    return new Promise((resolve, reject) => {
+        axios.get(config.serverAddress + '/todos').then((response) => {
+            let items = response.data.map(item => {
+                item.dueDate = moment(item.dueDate).clone();
+                return item;
+            })
+            console.log(items);
+            resolve(items);
+        })
+        .catch(error => {
+            console.error(error);
+            reject(error);
+        });
+    });
+}
 
+function addItem(description, date, type)
+{
+    return new Promise((resolve, reject) => {
 
-
-let data = [
-    {
-        id: Math.floor(Math.random() * 1000),
-        description: "Pick up milk",
-        date: moment().add(7, 'days'),
-        type: "chore",
-        isDone: false,
-    },
-    {
-        id: Math.floor(Math.random() * 1000),
-        description: "Learn React",
-        date: moment().add(1, 'month'),
-        type: "learning",
-        isDone: false,
-    }
-];
+        axios.post(config.serverAddress + '/todos',
+            { description,
+              dueDate: moment(date).toJSON(),
+              type,
+              isDone: false
+            }).then(response => {
+                return getItems();
+            }).then(items => {
+                resolve(items);
+            });
+    });
+}
 
 export default {
-    getItems: () => {
-        return Promise.resolve(data);
-    },
-    addItem: (description, date, type) => {
-        return new Promise((resolve, reject) => {
-            data = data.concat([
-                {
-                    id: Math.floor(Math.random() * 1000),
-                    description,
-                    date: moment(date),
-                    type
-                }
-            ]);
-
-            resolve(data);
-        });
-        
-    },
+    getItems,
+    addItem,
 }
