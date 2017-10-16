@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import 'bootstrap/dist/css/bootstrap-theme.css';
+import {
+    BrowserRouter as Router,
+    Route,
+  } from 'react-router-dom'
 
 import NewItemButton from './comps/NewItemButton';
 import TodoList from './comps/TodoList';
 import itemData from './data/itemData';
+import Menu from './comps/Menu';
+import NewItemInputs from './comps/NewItemInputs';
+
+
 
 class App extends Component {
 
@@ -17,7 +24,6 @@ class App extends Component {
             items: [],
             editableVisible: false
         };
-
 
         this.toggleNewItemEditable = this.toggleNewItemEditable.bind(this);
         this.addNewItem = this.addNewItem.bind(this);
@@ -34,12 +40,6 @@ class App extends Component {
         this.setState({ items });
     }
 
-    buttonPressed()
-    {
-      console.log("test");
-      // ...
-    }
-
     toggleNewItemEditable()
     {
         this.setState({
@@ -53,18 +53,20 @@ class App extends Component {
         this.toggleNewItemEditable();
     }
 
-
-
-    render() {
-
+    render() {      
+        //<Route exact path="/" render={props => <NewItemButton clickHandler={ this.toggleNewItemEditable } {...props} />} />  
         return (
-            <div className="App container">
-                <NewItemButton clickHandler={ this.toggleNewItemEditable }/>
-                <TodoList
-                    items={ this.state.items }
-                    editableVisible={ this.state.editableVisible }
-                    addNewItemAction={this.addNewItem } />
-            </div>
+            <Router>
+                <div className="App container">
+                    <Menu />
+                    <Route exact path="/" component={NewItemButton} />
+                    <Route path="/new" render={ props => <NewItemInputs addNewItemAction={ this.props.addNewItemAction } {...props } /> } />
+                    <TodoList
+                        items={ this.state.items }
+                        editableVisible={ this.state.editableVisible }
+                        addNewItemAction={this.addNewItem } />
+                </div>
+            </Router>            
         );
     }
 }

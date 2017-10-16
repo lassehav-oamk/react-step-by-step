@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-class NewItemButton extends Component {
-    render () {
-        return (
-            <div>
-                <button onClick={ this.props.clickHandler }>Add new item</button>
-            </div>
-        )
-    }
+const NewItemButton = () => {
+    return (
+        <div>
+            <Link to="/new"><button className="btn btn-primary">Add new item</button></Link>
+        </div>
+    )
 }
 
 export default NewItemButton
