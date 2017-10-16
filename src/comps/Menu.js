@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router'
 import './Menu.css';
 
 class Menu extends Component {
     render () {
-        console.log("route props", this.props);
         return (
             <div className="menu">
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
-                        <Link className="nav-link active" to="/">List</Link>
+                        <Link className={ this.props.location.pathname === "/" ? "nav-link active" : "nav-link" } to="/">List</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/graph">Graph</Link>
+                        <Link className={ this.props.location.pathname === "/graph" ? "nav-link active" : "nav-link" } to="/graph">Graph</Link>
                     </li>
                 </ul>
             </div>
@@ -20,4 +20,6 @@ class Menu extends Component {
     }
 }
 
-export default Menu
+const MenuWithRouter = withRouter(Menu)
+
+export default MenuWithRouter

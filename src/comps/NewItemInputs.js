@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
 
 class NewItemInputs extends Component {
     constructor(props){
@@ -50,7 +48,7 @@ class NewItemInputs extends Component {
     }
 
     render () {
-        if(this.props.isVisible == false)
+        if(this.props.isVisible === false)
         {
             return null;
         }

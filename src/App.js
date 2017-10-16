@@ -7,11 +7,10 @@ import {
     Route,
   } from 'react-router-dom'
 
-import NewItemButton from './comps/NewItemButton';
 import TodoList from './comps/TodoList';
 import itemData from './data/itemData';
 import Menu from './comps/Menu';
-import NewItemInputs from './comps/NewItemInputs';
+
 
 
 
