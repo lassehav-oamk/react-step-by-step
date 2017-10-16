@@ -1,10 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const NewItemButton = () => {
+const NewItemButton = (props) => {
+    if(props.isVisible === false)
+    {
+        return null;
+    }
+
     return (
         <div>
-            <Link to="/new"><button className="btn btn-primary">Add new item</button></Link>
+            <button className="btn btn-primary" onClick={ props.onClick }>Add new item</button>
         </div>
     )
 }

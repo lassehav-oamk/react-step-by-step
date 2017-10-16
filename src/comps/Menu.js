@@ -4,15 +4,16 @@ import './Menu.css';
 
 class Menu extends Component {
     render () {
+        console.log("route props", this.props);
         return (
             <div className="menu">
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
-                        <Link to="/"><a className="nav-link active">List</a></Link>
+                        <Link className="nav-link active" to="/">List</Link>
                     </li>
-                    <li className="nav-item">                        
-                        <Link to="/graph"><a className="nav-link">Graph</a></Link>
-                    </li>                    
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/graph">Graph</Link>
+                    </li>
                 </ul>
             </div>
         )

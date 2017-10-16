@@ -25,7 +25,6 @@ class App extends Component {
             editableVisible: false
         };
 
-        this.toggleNewItemEditable = this.toggleNewItemEditable.bind(this);
         this.addNewItem = this.addNewItem.bind(this);
     }
 
@@ -40,33 +39,23 @@ class App extends Component {
         this.setState({ items });
     }
 
-    toggleNewItemEditable()
-    {
-        this.setState({
-            editableVisible: !this.state.editableVisible
-        });
-    }
-
     addNewItem(item)
     {
         itemData.addItem(item.description, item.dueDate, item.type).then((items) => this.addItemsToState(items));
-        this.toggleNewItemEditable();
     }
 
-    render() {      
-        //<Route exact path="/" render={props => <NewItemButton clickHandler={ this.toggleNewItemEditable } {...props} />} />  
+    render() {
+
         return (
             <Router>
                 <div className="App container">
                     <Menu />
-                    <Route exact path="/" component={NewItemButton} />
-                    <Route path="/new" render={ props => <NewItemInputs addNewItemAction={ this.props.addNewItemAction } {...props } /> } />
-                    <TodoList
-                        items={ this.state.items }
-                        editableVisible={ this.state.editableVisible }
-                        addNewItemAction={this.addNewItem } />
+                    <Route exact path="/" render={ props => <TodoList
+                                                                items={ this.state.items }
+                                                                addNewItemAction={this.addNewItem }
+                                                                {...props }/> } />
                 </div>
-            </Router>            
+            </Router>
         );
     }
 }
