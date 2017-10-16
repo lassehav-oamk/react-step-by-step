@@ -9,10 +9,10 @@ class Menu extends Component {
             <div className="menu">
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
-                        <Link className={ this.props.location.pathname === "/" ? "nav-link active" : "nav-link" } to="/">List</Link>
+                        <Link className={ "nav-link " + (this.props.location.pathname === "/" ? "active" : "") } to="/">List</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={ this.props.location.pathname === "/graph" ? "nav-link active" : "nav-link" } to="/graph">Graph</Link>
+                        <Link className={ "nav-link " + (this.props.location.pathname === "/graph" ? "active" : "") } to="/graph">Graph</Link>
                     </li>
                 </ul>
             </div>
