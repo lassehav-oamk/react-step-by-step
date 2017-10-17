@@ -2,6 +2,13 @@ import moment from 'moment';
 import axios from 'axios';
 const config = require ('../config.json');
 
+function isDoneToggle(itemId)
+{
+    return new Promise((resolve, reject) => {
+        console.log("delete item id ", itemId);
+    });
+}
+
 function getItems()
 {
     return new Promise((resolve, reject) => {
@@ -40,4 +47,5 @@ function addItem(description, date, type)
 export default {
     getItems,
     addItem,
+    isDoneToggle
 }

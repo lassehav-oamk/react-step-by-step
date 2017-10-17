@@ -12,8 +12,6 @@ import itemData from './data/itemData';
 import Menu from './comps/Menu';
 
 
-
-
 class App extends Component {
 
     constructor()
@@ -43,6 +41,11 @@ class App extends Component {
         itemData.addItem(item.description, item.dueDate, item.type).then((items) => this.addItemsToState(items));
     }
 
+    isDoneToggleAction(itemId)
+    {
+        itemData.isDoneToggle(itemId);
+    }
+
     render() {
 
         return (
@@ -51,7 +54,8 @@ class App extends Component {
                     <Menu />
                     <Route exact path="/" render={ props => <TodoList
                                                                 items={ this.state.items }
-                                                                addNewItemAction={this.addNewItem }
+                                                                addNewItemAction={ this.addNewItem }
+                                                                isDoneToggleAction={ this.isDoneToggleAction }
                                                                 {...props }/> } />
                 </div>
             </Router>
