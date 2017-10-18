@@ -23,6 +23,7 @@ class App extends Component {
         };
 
         this.addNewItem = this.addNewItem.bind(this);
+        this.isDoneToggleAction = this.isDoneToggleAction.bind(this);
     }
 
     componentDidMount () {
@@ -43,7 +44,11 @@ class App extends Component {
 
     isDoneToggleAction(itemId)
     {
-        itemData.isDoneToggle(itemId);
+        itemData.isDoneToggle(itemId)
+            .then(itemData.getItems)
+            .then(items => {
+                this.setState({ items });
+            });
     }
 
     render() {

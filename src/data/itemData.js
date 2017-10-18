@@ -6,6 +6,18 @@ function isDoneToggle(itemId)
 {
     return new Promise((resolve, reject) => {
         console.log("delete item id ", itemId);
+        axios.post(config.serverAddress + '/todos/' + itemId + '/toggleDone', 
+                   {},
+                   {
+                        headers: {'Content-Type': 'application/json'},
+                   })        
+        .then(response => {
+            resolve();
+        })
+        .catch(error => {
+            console.log(error);
+            reject(error)
+        });
     });
 }
 
