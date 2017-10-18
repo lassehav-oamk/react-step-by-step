@@ -7,8 +7,13 @@ class TodoList extends Component {
         return (
             <div >
                 <NewItemButtonEditableToggler {...this.props}/>
-                {this.props.items.map((item) =>
-                    <TodoItem key={item.id} description={ item.description } type={ item.type } dueDate={ item.dueDate.format("DD.MM.YYYY")} />
+                { this.props.items.map((item) =>
+                    <TodoItem key={ item.id }
+                              id={ item.id }
+                              isDoneToggleAction={ this.props.isDoneToggleAction }
+                              description={ item.description }
+                              type={ item.type }
+                              dueDate={ item.dueDate.format("DD.MM.YYYY") } />
                 )}
             </div>
         )
