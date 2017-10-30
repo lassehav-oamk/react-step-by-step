@@ -10,7 +10,7 @@ import {
 import TodoList from './comps/TodoList';
 import itemData from './data/itemData';
 import Menu from './comps/Menu';
-
+import TodoGraph from './comps/TodoGraph';
 
 class App extends Component {
 
@@ -57,6 +57,7 @@ class App extends Component {
                                                                 addNewItemAction={ this.addNewItem }
                                                                 isDoneToggleAction={ this.isDoneToggleAction }
                                                                 {...props }/> } />
+                    <Route exact path="/graph" render={ props => <TodoGraph items={this.state.items} {...props} /> } />
                 </div>
             </Router>
         );
